@@ -1,0 +1,15 @@
+{
+  "name": "campion-server",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "https://github.com/LuisPeixoto/campion-server",
+  "author": "Luis Fernando Peixoto Cabral",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
