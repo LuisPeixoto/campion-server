@@ -6,6 +6,7 @@
   "author": "Luis Fernando Peixoto Cabral",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.22.1",
