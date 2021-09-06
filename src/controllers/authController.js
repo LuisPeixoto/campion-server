@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const { hashPassword, validatePassword } = require('../utils/hash')
 
-const userController = {
+const authController = {
   async login (req, res) {
     try {
       const { username, password } = req.body
@@ -50,4 +50,4 @@ const userController = {
 
 }
 
-module.exports = userController
+module.exports = authController
