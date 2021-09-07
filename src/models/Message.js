@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const messageSchema = new Schema({
-  id: {
+  chatId: {
     type: String,
     required: true,
     min: 3,

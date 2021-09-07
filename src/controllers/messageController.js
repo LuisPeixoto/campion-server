@@ -2,9 +2,9 @@ const Message = require('../models/Message')
 
 const messageController = {
   async get (req, res) {
-    const { id } = req.params
+    const { chatId } = req.params
     try {
-      const messages = await Message.find({ id })
+      const messages = await Message.find({ chatId })
       res.status(200).json(messages)
     } catch (error) {
       console.log(error)
