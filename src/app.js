@@ -8,11 +8,14 @@ const messages = require('./routes/messages.routes')
 const uploadConfig = require('./config/upload')
 const multer = require('multer')
 const path = require('path')
+const helmet = require('helmet')
 
 app.use(express.json())
 dotenv.config()
 
 app.use('/upload', express.static(path.join(__dirname, '..', '..', '/upload')))
+
+app.use(helmet())
 
 const upload = multer({ storage: uploadConfig })
 app.post('/upload', upload.single('file'), (req, res) => {
