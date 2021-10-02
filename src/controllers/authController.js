@@ -1,4 +1,6 @@
+const authConfig = require('../config/auth')
 const User = require('../models/User')
+const { sign } = require('jsonwebtoken')
 const { hashPassword, validatePassword } = require('../utils/hash')
 
 const authController = {
@@ -16,7 +18,25 @@ const authController = {
         return res.status(404).json({ message: 'error' })
       }
 
-      return res.status(200).json(user)
+      const { secret, expiresIn } = authConfig.jwt
+      console.log(user)
+
+      const token = sign({}, secret, {
+        subject: user._id.toString(),
+        expiresIn
+      })
+
+      const data = {
+        _id: user._id.toString(),
+        username: user.username,
+        name: user.name,
+        avatar: user.avatar,
+        followers: user.followers,
+        followings: user.followings
+
+      }
+
+      return res.status(200).json({ user: data, token })
     } catch (error) {
       console.log(error)
       if (error) { return res.status(500).send({ error: error }) }
