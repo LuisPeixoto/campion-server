@@ -18,8 +18,9 @@ const authController = {
         return res.status(404).json({ message: 'error' })
       }
 
+      /// CRIAR O TOKEN PARA O USUARIO
+
       const { secret, expiresIn } = authConfig.jwt
-      console.log(user)
 
       const token = sign({}, secret, {
         subject: user._id.toString(),

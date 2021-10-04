@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const { hashPassword } = require('../utils/hash')
 
-const userController = {
+const userController = { // retorna o usuario atraves do username
   async get (req, res) {
     const { username } = req.query
     try {
@@ -14,7 +14,7 @@ const userController = {
     }
   },
 
-  async update (req, res) {
+  async update (req, res) { // Atualiza as informações do usuario
     const { id } = req.params
 
     if (req.body.userId === req.params.id) {
@@ -36,7 +36,7 @@ const userController = {
     }
   },
 
-  async followers (req, res) {
+  async followers (req, res) { // retorna todos os seguidores de um usuario
     try {
       const user = await User.findById(req.params.userId)
       const followers = await Promise.all(
@@ -58,7 +58,7 @@ const userController = {
     }
   },
 
-  async follow (req, res) {
+  async follow (req, res) { // seguir um outro um usuario atraves de um id
     const { id } = req.params
     if (req.body.userId !== id) {
       try {
@@ -77,7 +77,7 @@ const userController = {
     }
   },
 
-  async unfollow (req, res) {
+  async unfollow (req, res) { // deixa de seguir um usuario atraves do id
     const { id } = req.params
     if (req.body.userId !== id) {
       try {

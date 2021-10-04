@@ -4,13 +4,13 @@ const { Schema } = mongoose
 
 const messageSchema = new Schema({
   chatId: {
-    type: String,
-    required: true,
-    min: 3,
-    unique: true
+    type: String
   },
 
   sender: {
+    type: String
+  },
+  receiver: {
     type: String
   },
   text: {
