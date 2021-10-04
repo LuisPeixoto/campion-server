@@ -2,23 +2,23 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 
-const messageSchema = new Schema({
-  chatId: {
+const messageSchema = new Schema({ // definindo schema
+  chatId: { //o id da conversa qual essa menssagem pertence
     type: String,
     required: true,
     min: 3,
     unique: true
   },
 
-  sender: {
+  sender: { //remetente id
     type: String
   },
-  text: {
+  text: { //menssagem a ser enviada
     type: String
   }
 },
 {
-  timestamps: true
+  timestamps: true //hora de envio
 })
 
 module.exports = mongoose.model('message', messageSchema)
