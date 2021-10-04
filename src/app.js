@@ -15,7 +15,7 @@ dotenv.config()
 
 app.use('/upload', express.static(path.join(__dirname, '..', '..', '/upload')))
 
-app.use(helmet())
+app.use(helmet()) //
 
 const upload = multer({ storage: uploadConfig })
 app.post('/upload', upload.single('file'), (req, res) => {
