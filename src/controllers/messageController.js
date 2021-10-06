@@ -36,7 +36,7 @@ const messageController = {
       console.log(connectedUsers[receiver])
 
       const userSocket = connectedUsers[receiver]
-      if (userSocket) {
+      if (userSocket) { // VERIFICAR SE O USUARIO ESTA ONLINE
         const msg = {
           _id: new Date().getTime(),
           text,

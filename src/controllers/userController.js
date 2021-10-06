@@ -14,6 +14,16 @@ const userController = { // retorna o usuario atraves do username
     }
   },
 
+  async getAll (req, res) {
+    try {
+      const users = await User.find({}, { name: 1, username: 1, avatar: 1 })
+      res.status(200).json(users)
+    } catch (error) {
+      console.log(error)
+      if (error) { return res.status(500).send({ error: error }) }
+    }
+  },
+
   async update (req, res) { // Atualiza as informações do usuario
     const { id } = req.params
 

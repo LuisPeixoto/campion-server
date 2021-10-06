@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const { Schema } = mongoose
 
 const userSchema = new Schema({
@@ -9,34 +8,28 @@ const userSchema = new Schema({
     min: 3,
     unique: true
   },
-
   name: {
     type: String,
     required: true,
     min: 3
   },
-
   password: {
     type: String,
     required: true,
     min: 8
   },
-
   avatar: {
     type: String,
     default: ''
   },
-
   followers: {
     type: Array,
     default: []
   },
-
   followings: {
     type: Array,
     default: []
   }
-
 })
 
 module.exports = mongoose.model('user', userSchema)

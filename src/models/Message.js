@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
-
 const { Schema } = mongoose
 
 const messageSchema = new Schema({
   chatId: {
     type: String
   },
-
   sender: {
     type: String
   },

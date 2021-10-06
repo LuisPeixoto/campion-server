@@ -31,11 +31,19 @@ const chatController = {
 
       // messages[index].createdAt ? messages[index].createdAt :
       const data = chats.map((chat, index) => { // Colocar no formato ideal para retorno
+        let date = chat.createdAt
+        let lastMessage = 'Diga "oi"'
+
+        if (messages[index]) {
+          date = messages[index].createdAt
+          lastMessage = messages[index].text
+        }
+
         return {
           _id: chat._id,
           members: chat.members,
-          createdAt: chat.createdAt,
-          // lastMessage: (messages[index].text) ? messages[index].text : 'sem nenhuma mensagem',
+          createdAt: date,
+          lastMessage: lastMessage,
           user: {
             username: users[index].username,
             name: users[index].name,
