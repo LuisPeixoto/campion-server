@@ -83,7 +83,7 @@ O modelo da aplicação é composto por três collections: usuário, conversa e 
 ### Clone do repositório
 
 ```bash
-$ git clone https://github.com/LuisPeixoto/campion
+$ git clone https://github.com/LuisPeixoto/campion-server
 
 $ cd campion
 ```
