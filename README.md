@@ -85,7 +85,7 @@ O modelo da aplicação é composto por três collections: usuário, conversa e 
 ```bash
 $ git clone https://github.com/LuisPeixoto/campion-server
 
-$ cd campion
+$ cd campion-server
 ```
 
 ### Instalação das dependências
