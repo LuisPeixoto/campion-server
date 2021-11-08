@@ -1,0 +1,10 @@
+config:
+  target: "http://localhost:3000/test/615da859d05cc846a7271c29" # default target
+  phases:
+    - duration: 1
+      arrivalCount: 5
+scenarios:
+  - flow:
+      - get:
+          url: "/"
+    # Scenario definitions would go here.

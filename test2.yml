@@ -1,5 +1,5 @@
 config:
-  target: "http://localhost:3000/test/615da859d05cc846a7271c29/61364da2c24be611d2f05b2f/615da6cb1bd6b9d03967acdf" # default target
+  target: "http://localhost:3000/test/user2/615da859d05cc846a7271c29/61364da2c24be611d2f05b2f/615da6cb1bd6b9d03967acdf" # default target
   phases:
     - duration: 1
       arrivalCount: 500

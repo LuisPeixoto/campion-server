@@ -4,13 +4,7 @@ const messageController = {
   async get (req, res) { // retorna o conteudo da mensagem atraves do id
     const { chatId } = req.params
     try {
-      const time1 = new Date().getUTCMilliseconds()
       const messages = await Message.find({ chatId }).sort({ createdAt: -1 })
-      const time2 = new Date().getUTCMilliseconds()
-      const result = time2 - time1
-
-      console.log(result)
-
       const data = messages.map((message) => {
         return {
           _id: message._id,
@@ -30,15 +24,12 @@ const messageController = {
   },
   async newMessage (req, res) { // criar uma nova mensagem através do texto, id do remetente e o destinatario
     const newMessage = new Message(req.body)
-
     try {
       const savedMessage = await newMessage.save()
 
       /// //////// parte do socket io /////
       const { io, connectedUsers } = req
       const { receiver, sender, text } = req.body
-
-      // console.log(connectedUsers[receiver])
 
       const userSocket = connectedUsers[receiver]
       if (userSocket) { // VERIFICAR SE O USUARIO ESTA ONLINE
