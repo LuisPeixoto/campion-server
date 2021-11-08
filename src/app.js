@@ -5,6 +5,7 @@ const auth = require('./routes/auth.routes')
 const user = require('./routes/user.routes')
 const chats = require('./routes/chats.routes')
 const messages = require('./routes/messages.routes')
+const test = require('./routes/test.routes')
 const uploadConfig = require('./config/upload')
 const multer = require('multer') // upload de imagens
 const path = require('path')
@@ -38,11 +39,12 @@ app.post('/upload', upload.single('file'), (req, res) => {
   }
 })
 
-/// ////////// DEFINI as da aplicacao ///////////
+/// ////////// DEFINI as rotas da aplicacao ///////////
 app.use('/auth', auth)
 app.use('/user', user)
 app.use('/chats', chats)
 app.use('/message', messages)
+app.use('/test', test)
 
 /// /////////////// definir porta 3000 para aplicacao
 server.listen(3000, () => {
