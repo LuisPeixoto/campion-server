@@ -47,7 +47,7 @@ app.use('/message', messages)
 app.use('/test', test)
 
 /// /////////////// definir porta 3000 para aplicacao
-server.listen(3000, () => {
+server.listen(80, () => {
   io.on('connection', (socket) => {
     const { user_id } = socket.handshake.query
     connectedUsers[user_id] = socket.id
