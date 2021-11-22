@@ -20,8 +20,6 @@ const chatController = {
 
       const users = await User.find({ _id: { $in: users_id } }, { username: 1, name: 1, avatar: 1 })
 
-      // const messages = await Message.find({ chatId: { $in: messages_id } }, { text: 1, createdAt: 1 }).sort({ createdAt: -1 }).distinct('chatId')
-
       const messages = []
 
       for (const message_id of messages_id) {
@@ -60,7 +58,14 @@ const chatController = {
   },
   async newChat (req, res) { // criar um novo chat atraves do id do remetente e destinatario
     const { senderId, receiverId } = req.body
-    const chat = new Chat({
+
+    let chat = await Chat.find({ members: { $all: [senderId, receiverId] } }, { _id: 1, members: 1 })
+
+    if (chat.length !== 0) {
+      return res.status(200).json(chat[0])
+    }
+
+    chat = new Chat({
       members: [senderId, receiverId]
     })
 

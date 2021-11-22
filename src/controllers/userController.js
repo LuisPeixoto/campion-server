@@ -14,6 +14,32 @@ const userController = { // retorna o usuario atraves do username
     }
   },
 
+  async search (req, res) {
+    const { user } = req.query
+    try {
+      const users = await User.find({
+        $or: [
+          { username: { $regex: user, $options: 'i' } },
+          { name: { $regex: user, $options: 'i' } }
+        ]
+      })
+
+      const data = users.map(user => {
+        return {
+          _id: user._id,
+          name: user.name,
+          username: user.username,
+          avatar: user.avatar
+        }
+      })
+
+      res.status(200).json(data)
+    } catch (error) {
+      console.log(error)
+      if (error) { return res.status(500).send({ error: error }) }
+    }
+  },
+
   async getAll (req, res) {
     try {
       const users = await User.find({}, { name: 1, username: 1, avatar: 1 })
@@ -46,11 +72,37 @@ const userController = { // retorna o usuario atraves do username
     }
   },
 
-  async followers (req, res) { // retorna todos os seguidores de um usuario
+  async following (req, res) { // retorna todos os seguidores de um usuario
     try {
       const user = await User.findById(req.params.userId)
+
+      console.log(user.followings)
+
       const followers = await Promise.all(
         user.followings.map((followerId) => {
+          return User.findById(followerId)
+        })
+      )
+
+      const followingList = []
+
+      followers.map((follower) => {
+        const { _id, username, name, avatar } = follower
+        followingList.push({ _id, username, name, avatar })
+      })
+      res.status(200).json(followingList)
+    } catch (error) {
+      console.log(error)
+      if (error) { return res.status(500).send({ error: error }) }
+    }
+  },
+
+  async follower (req, res) { // retorna todos os seguidores de um usuario
+    try {
+      const user = await User.findById(req.params.userId)
+
+      const followers = await Promise.all(
+        user.followers.map((followerId) => {
           return User.findById(followerId)
         })
       )
@@ -62,6 +114,24 @@ const userController = { // retorna o usuario atraves do username
         followersList.push({ _id, username, name, avatar })
       })
       res.status(200).json(followersList)
+    } catch (error) {
+      console.log(error)
+      if (error) { return res.status(500).send({ error: error }) }
+    }
+  },
+
+  async contacts (req, res) { // retorna todos os seguidores de um usuario
+    try {
+      const user = await User.findById(req.params.userId)
+      const contactsId = user.followings.filter(followerId => user.followers.includes(followerId))
+
+      const contacts = await Promise.all(
+        contactsId.map((contactId) => {
+          return User.findById(contactId, { name: 1, username: 1, avatar: 1 })
+        })
+
+      )
+      res.status(200).json(contacts)
     } catch (error) {
       console.log(error)
       if (error) { return res.status(500).send({ error: error }) }
